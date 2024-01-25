@@ -53,9 +53,9 @@ You can change almost all the colors within the 'theme.conf' file.More color opt
 </details>
       
 <details>
-<summary><b>⚙️Date&Time Menu (0/1)</b></summary>
+<summary><b>✔️Date&Time Menu (1/1)</b></summary>
 
-- [ ] Layout
+- [x] Layout
 </details>
       
 <details>
@@ -106,10 +106,10 @@ You can change almost all the colors within the 'theme.conf' file.More color opt
 </details>
 
 <details>
-  <summary><b>⚙️Custom songs and Music Player (0/2)</b></summary>
+  <summary><b>✔️Custom songs and Music Player (2/2)</b></summary>
 
-- [ ] List of custom songs
-- [ ] Music Player on login screen to change the currently playing song
+- [x] List of custom songs
+- [x] Music Player on login screen to change the currently playing song
 
 </details>
 
@@ -139,26 +139,22 @@ If you would like to contribute to this repo please do so by creating a PR. I am
 
 ## Dependencies
 
-Install sddm(Simple Desktop Display Manager).You also need QT5 which includes Qt Quick Controls 2, Qt Graphical Effects, Qt SVG, Qt Quick Layouts with version 5.11 or new.To do so 
+Install sddm(Simple Desktop Display Manager).You also need QT5 which includes Qt Quick Controls 2, Qt Graphical Effects, Qt SVG, Qt Quick Layouts with version 5.11 or new.Also install qt6-base for videos to load faster.And to use qt6 for faster video loading times add "MinimumQtVersion=6.4.0" to /etc/sddm.conf at the end.
 
 
 For **Arch** based distros using **pacman**
 (Obarun/Artix/Manjaro/KaOS/Chakra etc.)
 ```bash
-sudo pacman -S --needed sddm
-qt5‑graphicaleffects
-qt5‑quickcontrols2
-qt5‑svg
+sudo pacman -S gst-libav phonon-qt5-gstreamer gst-plugins-good qt5-quickcontrols qt5-graphicaleffects qt5-multimedia qt6-base
 ```
 For **Debian** based distros using **apt**
-(Ubuntu/Kubuntu/Kali/Neon/antiX etc.)
+(Ubuntu/Kali/Neon/antiX etc.)
 ```bash
-sudo apt install ‑‑no‑install‑recommends
-sddm
-qml‑module‑qtquick‑layouts
-qml‑module‑qtgraphicaleffects
-qml‑module‑qtquick‑controls2
-libqt5svg5
+sudo apt-get install gstreamer1.0-libav qml-module-qtmultimedia libqt5multimedia5-plugins qt6-base-dev
+```
+For **Kubuntu** using **apt**
+```bash
+apt install gstreamer1.0-libav phonon4qt5-backend-gstreamer gstreamer1.0-plugins-good qml-module-qtquick-controls qml-module-qtgraphicaleffects qml-module-qtmultimedia qt5-default qt6-base-dev
 ```
 
 
@@ -170,6 +166,8 @@ cd genshin-sddm-theme
 bash install-sddm-theme.sh
 ```
 After installing and testing if it says invalid credentials on log that means you mistyped the password while installing.To fix this just go to /usr/share/sddm/themes/genshin-sddm-theme/components/credentials.txt and correct the second password.
+
+If videos don't load check if they are installed correctly.If they didn't create an issue and download videos from [Google Drive](https://drive.google.com/drive/folders/1Yz2GxV8uvZJM16YSbE2yPRMT58H5o0Bs?usp=drive_link) manually.
 
 
 If you want manual installation:
@@ -193,13 +191,13 @@ In order to do this:
 For Arch based distros:
 ```bash
 cd
-git clone https://github.com/nicefaa6waa/genshin-sddm-theme.git
+git clone https://codeberg.org/nicefaa6waa/genshin-sddm-theme.git
 sudo cp -r /genshin-sddm-theme/ /usr/share/sddm/themes/
 ```
 For Debian based distros:
 ```bash
 cd
-git clone https://github.com/nicefaa6waa/genshin-sddm-theme.git
+git clone https://codeberg.org/nicefaa6waa/genshin-sddm-theme.git
 sudo cp -r genshin-sddm-theme /usr/share/sddm/themes/
 ```
 After that install and unzip various backgronud videos.Choose the one you like and download as a zip.
