@@ -161,7 +161,7 @@ apt install gstreamer1.0-libav phonon4qt5-backend-gstreamer gstreamer1.0-plugins
 ## Installing and Testing
 Installation just got easier.Just clone this repo then cd into repo and run installer.
 ```bash
-git clone https://github.com/nicefaa6waa/genshin-sddm-theme.git
+git clone https://codeberg.org/nicefaa6waa/genshin-sddm-theme.git
 cd genshin-sddm-theme
 bash install-sddm-theme.sh
 ```
