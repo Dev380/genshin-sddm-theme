@@ -66,6 +66,7 @@ Item {
             });
         });
     } else {
+        sddm.login(user, password, session);
         passwordField.text = "";
     }
 }
