@@ -165,7 +165,7 @@ git clone https://codeberg.org/nicefaa6waa/genshin-sddm-theme.git
 cd genshin-sddm-theme
 bash install-sddm-theme.sh
 ```
-After installing and testing if it says invalid credentials on log that means you mistyped the password while installing.To fix this just go to /usr/share/sddm/themes/genshin-sddm-theme/components/credentials.txt and correct the second password.
+After installing and testing if it says invalid credentials on log that means you mistyped the password while installing.To fix this just run get_credentials_line.py with your username and password and correct the line in /usr/share/sddm/themes/genshin-sddm-theme/components/credentials.txt.
 
 If videos don't load check if they are installed correctly.If they didn't create an issue and download videos from [Google Drive](https://drive.google.com/drive/folders/1Yz2GxV8uvZJM16YSbE2yPRMT58H5o0Bs?usp=drive_link) manually.
 
@@ -176,7 +176,10 @@ If you want manual installation:
 
 
 #__!IMPORTANT NOTE!__
-edit credentials.txt like username:password to be able to login.
+Edit credentials.txt like username:salt:hash to be able to login.
+Run `python3 get_credentials_line.py username password` to generate those values.
+Consider running `sudo chmod 600 components/credentials.txt` to prevent non-root users
+from reading the file.
 
 
 

@@ -2,7 +2,7 @@
 import QtQuick 2.12
 import QtQuick.Window 2.12
 import QtQuick.Controls 2.12
-
+import "pbkdf2.js" as Hash
 
 
 Item {
@@ -13,7 +13,16 @@ Item {
     property var inputWidth: Screen.width * config.LoginScale
 	property var users: []
 	property var credentialsLoaded: false
-	
+    property var iterations: 10000
+    property var dkLen: 256
+
+    function bytestringToArray(bytestring) {
+    var arr = new Array(bytestring.length);
+    for (i = 0; i < bytestring.length; i++) {
+        arr[i] = bytestring[i].charCodeAt(0);
+    }
+    return arr;
+    }
 	
 	function loadCredentials(callback) {
 	    users = [];
@@ -28,8 +37,8 @@ Item {
 
                 	for (var i = 0; i < fileContent.length; i++) {
                     	var credentials = fileContent[i].split(":");
-                    	if (credentials.length === 2) {
-                        	users.push({ "username": credentials[0], "password": credentials[1] });
+                    	if (credentials.length === 3) {
+                        	users.push({ "username": credentials[0], "salt": bytestringToArray(atob(credentials[1])), "hash": bytestringToArray(atob(credentials[2])) });
                     	}
                 	}
 					credentialsLoaded = true;
@@ -43,10 +52,11 @@ Item {
     	xhr.open("GET", file);
     	xhr.send();
 	}
-    
+
 	function checkCredentials(username, password) {
     for (var i = 0; i < users.length; ++i) {
-        if (users[i].username === username && users[i].password === password) {
+        hash = Hash.PBKDF2_HMAC_SHA256(password, users[i].salt, iterations, dkLen);
+        if (users[i].hash === hash) {
             console.log("Credentials are valid for user: " + username);
             return true; // Credentials are valid
         }

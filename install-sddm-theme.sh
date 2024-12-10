@@ -38,8 +38,10 @@ function handleMultipleAccounts {
         read -p "Enter the username for Account $i: " usern
         read -s -p "Enter the password for Account $i: " passn
 
-        echo "$usern:$passn" >> components/credentials.txt
+        /usr/bin/env python get_credentials_line.py usern passn >> components/credentials.txt
     done
+
+    sudo chmod 600 components/credentials.txt
 }
 
 function downloadFolder {
